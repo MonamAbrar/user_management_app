@@ -1,0 +1,22 @@
+
+
+
+
+
+
+Version 1 objectives:
+
+First CRUD practice project to learn the following:
+
+- Restful API structure
+- CRUD | List mentality
+- Components practice
+- Component lifecycle methods practice
+- array.map and array.filter practice (especially with react components)
+- API responses and user feedback (not user feedback yet)
+
+
+Other concepts learned:
+
+- other array methods (find, findIndex, splice)
+- destructuring syntax (    newArray = [...oldArray, extraValue];    )

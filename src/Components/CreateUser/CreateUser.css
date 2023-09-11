@@ -1,0 +1,26 @@
+.create-user {
+  display: flex;
+  flex-direction: column;
+  
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+  
+input[type="text"] {
+  /* width: 100%; */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.create-user-controls {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.create-user-controls button {
+ margin-right: 8px; 
+}
