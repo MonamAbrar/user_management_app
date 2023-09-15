@@ -1,8 +1,13 @@
 
 
+0.1.2
+  - Full restful_api
+
+
 0.1.1
   - Component structure improved (based on data and flow requirements)
   - Smaller, simpler components (only relevant functionality and data)
+
 
 0.0.1 -
   - first git commit

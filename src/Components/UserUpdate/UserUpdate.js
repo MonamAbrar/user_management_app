@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import { update_API } from "../../api/api";
 // import './UserUpdate.css';
 import '../UserCreate/UserCreate.css';
 
@@ -13,8 +14,7 @@ const UserUpdate = ({ closeHandler, saveHandler, userDetails}) => {
 
 
     const updateHandler = () => {
-        const updatedUserObject = {
-            id: userDetails.id,
+        const updatedUser = {
             name,
             email,
             website,
@@ -23,7 +23,10 @@ const UserUpdate = ({ closeHandler, saveHandler, userDetails}) => {
                 street,
             },
         };
-        console.log(`update api call`)
+        // console.log(`update api call`)
+        update_API(userDetails.id, updatedUser)
+        .then(response => response.json())
+        .then(jsonData => console.log(jsonData));
     }
 
     return (

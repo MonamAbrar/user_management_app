@@ -2,9 +2,6 @@ import React from 'react';
 
 import { useEffect, useState } from 'react';
 
-import CreateUser from '../UserCreate/UserCreate';
-import UserDetails from '../UserRead/UserRead';
-import EditUser from '../UserUpdate/UserUpdate';
 
 import { list_API } from '../../api/api';
 

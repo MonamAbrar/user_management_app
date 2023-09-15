@@ -5,14 +5,15 @@ Version 2 objectives:
 
 
 - Cleaner architecture
-  - Container-component
+  x Container-component
   - Prop drilling issues
 - App-wide state
 
 - Abstraction vs Direct code
 
-- API responses / errors
-- User feedback
+x Full restful API
+
+- User feedback | API responses / errors
 
 
 v2 details:

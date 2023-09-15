@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { create_API } from '../../api/api';
+
 import './UserCreate.css';
 
 const UserCreate = ({ closeHandler}) => {
@@ -19,7 +21,10 @@ const UserCreate = ({ closeHandler}) => {
                 street,
             }
         }
-        console.log(`create api call`)
+
+        create_API(newUser)
+        .then(response => response.json())
+        .then(jsonData => console.log(jsonData));
     }
 
     return (
