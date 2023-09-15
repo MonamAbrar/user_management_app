@@ -1,24 +1,9 @@
 
 
-export const fetchList = () => {
+export const list_API = () => {
       return fetch('https://jsonplaceholder.typicode.com/users');
-
-      // const data = response.json();
-      // return data;
-      // setUsers(data);
-    
-      // console.error('Error fetching user data:', error);
-    // try {
-    //   const response = await fetch('https://jsonplaceholder.typicode.com/users');
-    //   const data = await response.json();
-    //   return data;
-    //   // setUsers(data);
-    // } catch (error) {
-    //   console.error('Error fetching user data:', error);
-    //   return error;
-    // }
   };
 
-export const fetchItem = (userID) => {
+export const read_API = (userID) => {
       return fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
   };

@@ -1,40 +1,40 @@
-// import React, { useState, useEffect } from 'react';
+
+import { useState } from 'react';
+
 import UserList from '../Components/UserList/UserList';
-// import UserDetails from '../Components/UserDetails/UserDetails';
-// import CreateUser from '../Components/CreateUser/CreateUser';
-// import EditUser from '../Components/EditUser/EditUser';
+import UserCreate from '../Components/UserCreate/UserCreate';
+import UserRead from '../Components/UserRead/UserRead';
 
 import './App.css';
 
+
 function App() {
 
-  // const handleCreateUser = (newUser) => {
+  const [createComponentShown, setCreateComponent] = useState(false);
+  const [readComponentShown, setReadComponent] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
 
-  //   const updatedUsers = [...users, newUser];
-  //   setUsers(updatedUsers);
-  // };
+  const showCreateUserComponent = () => { setCreateComponent(true); };
+  const closeCreateUserComponent = () => { setCreateComponent(false); };
 
-  // const handleUpdateUser = (updatedUser) => {
+  const userClickHandler = (id) => {
+    setSelectedId(id);
+    showReadUserComponent();
+  };
 
-  //   const updatedUsers = users.map((user) => 
-  //   user.id === updatedUser.id ? updatedUser : user
-  //   );
-  //   setUsers(updatedUsers);
+  const showReadUserComponent = () => {setReadComponent(true);};
+  const closeReadUserComponent = () => {setReadComponent(false);};
 
-  //   setSelectedUser(null);
-  // };
 
+  
   return (
     <div>
       <h1>User Management App</h1>
         <>
-          <UserList/>
-          {/* <UserDetails/> */}
-          {/* <CreateUser onCreateUser={handleCreateUser} /> */}
-
-          {/* {selectedUser && (
-            <EditUser user={selectedUser} onUpdateUser={handleUpdateUser} />
-          )} */}
+          <button onClick={showCreateUserComponent}>Create</button>
+          {readComponentShown ? <UserRead closeHandler={closeReadUserComponent} id={selectedId} /> : '' }
+          {createComponentShown ? <UserCreate closeHandler={closeCreateUserComponent}/> : ''}
+          <UserList userClickHandler={userClickHandler}/>
         </>
     </div>
   );

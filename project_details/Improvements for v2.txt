@@ -1,0 +1,56 @@
+Improvements for version 2:
+
+
+  Data compartmentalization and structure:
+
+    - list: should only have list data
+
+    x create: doesn't need any data
+
+    - read: should have full data for one record
+      - edit: should have full data for one record (same as read, can get from read as props)
+      - delete: should have id (can get from read as props)
+
+    Additionally, after create, edit or delete, there should be a way to inform list to
+    refresh its data
+
+    > UserList component
+    > Create component
+    > Read component
+      > Edit component
+      > Delete button
+
+
+  > UI-container - has logic to update UserList component
+    > UserList component
+    > Create component
+    > Read component
+      > Edit component
+      > Delete button
+
+
+
+Container-component architecture:
+
+userList component
+
+  Logic:
+    - Effects
+    - States
+    - Handlers, state transitioning behavior
+
+  JSX:
+    - Rendering Logic and listeners, etc
+    - conditional Logic
+    - complicated dom structure
+
+Typically, for complex components, we break this down into two sub-components:
+
+  1. Container / Smart component:
+     Has all the effects, states, logic, handlers, tc
+  
+  2. Component / Dumb component / Presentational component:
+     Has all the jsx, rendering logic, conditional rendering logic, etc.
+
+  The Container is the parent, which renders the dumb component,
+  and passes it only the necessary data/handlers as props.

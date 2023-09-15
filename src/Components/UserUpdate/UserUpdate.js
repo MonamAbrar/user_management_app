@@ -1,30 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import './CreateUser.css';
+// import './UserUpdate.css';
+import '../UserCreate/UserCreate.css';
 
-const CreateUser = ({ closeHandler, saveHandler}) => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [website, setWebsite] = useState('');
-    const [city, setCity] = useState('');
-    const [street, setStreet] = useState('');
 
-    const onSave = () => {
-        const newUser = {
+const UserUpdate = ({ closeHandler, saveHandler, userDetails}) => {
+    const [name, setName] = useState(userDetails.name);  // useState('');
+    const [email, setEmail] = useState(userDetails.email);  // useState('');
+    const [website, setWebsite] = useState(userDetails.website);  // useState('');
+    const [city, setCity] = useState(userDetails?.address?.city);  // useState('');
+    const [street, setStreet] = useState(userDetails?.address?.street);  // useState('');
+
+
+    const updateHandler = () => {
+        const updatedUserObject = {
+            id: userDetails.id,
             name,
             email,
             website,
             address: {
                 city,
                 street,
-            }
-        }
-        saveHandler(newUser);
+            },
+        };
+        console.log(`update api call`)
     }
 
     return (
         <div className="create-user">
-            <h2>Create User</h2>
+            <h2>Update</h2>
             <input
                 type="text"
                 placeholder="Name"
@@ -61,11 +65,11 @@ const CreateUser = ({ closeHandler, saveHandler}) => {
                 className="user-input"
             />
             <div className='create-user-controls'>
-                <button onClick={onSave} className="create-button">Save</button>
+                <button onClick={updateHandler} className="create-button">Confirm</button>
                 <button onClick={closeHandler} className="create-button">Cancel</button>
             </div>
         </div>
     );
 };
 
-export default CreateUser;
+export default UserUpdate;
