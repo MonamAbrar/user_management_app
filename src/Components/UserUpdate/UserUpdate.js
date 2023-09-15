@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { usersAPI } from "../../api/api";
+import { update_API } from "../../api/api";
 // import './UserUpdate.css';
 import '../UserCreate/UserCreate.css';
 
@@ -23,8 +23,10 @@ const UserUpdate = ({ closeHandler, saveHandler, userDetails}) => {
                 street,
             },
         };
-
-        usersAPI.update(userDetails.id, updatedUser).then(data => console.log(data));
+        // console.log(`update api call`)
+        update_API(userDetails.id, updatedUser)
+        .then(response => response.json())
+        .then(jsonData => console.log(jsonData));
     }
 
     return (

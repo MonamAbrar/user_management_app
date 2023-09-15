@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 
 
-import { usersAPI } from '../../api/api';
+import { list_API } from '../../api/api';
 
 import './UserList.css';
 
@@ -12,7 +12,10 @@ const UserList = ({ userClickHandler }) => {
     
   useEffect(
     () => {
-        usersAPI.list().then(data => setUsers(data));
+        list_API()
+        .then(response => (response.json()))
+        .then(data => setUsers(data))
+        .catch(error => console.log(error));
     },
     []
   );

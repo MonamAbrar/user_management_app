@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 
-// import { create_API } from '../../api/api';
-
-import { usersAPI } from '../../api/api';
-
-import { getUsersAPI } from '../../api/api';
+import { create_API } from '../../api/api';
 
 import './UserCreate.css';
 
@@ -26,7 +22,9 @@ const UserCreate = ({ closeHandler}) => {
             }
         }
 
-        usersAPI.create(newUser).then(response => console.log(response));
+        create_API(newUser)
+        .then(response => response.json())
+        .then(jsonData => console.log(jsonData));
     }
 
     return (
