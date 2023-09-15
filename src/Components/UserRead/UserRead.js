@@ -4,7 +4,7 @@ import EditUser from '../UserUpdate/UserUpdate';
 
 import './UserRead.css';
 
-import { delete_API, read_API } from '../../api/api';
+import { usersAPI } from '../../api/api';
 
 const UserRead = ({ closeHandler, id }) => {
 
@@ -15,18 +15,17 @@ const UserRead = ({ closeHandler, id }) => {
     const closeEditUserComponent = () => {setEditUserComponent(false);};
 
     const handleDelete = (userId) => {
-        delete_API(userId)
-        .then(response => response.json())
-        .then(jsonData => console.log(jsonData));
-        // console.log(`delete api call for id ${userId}`);
+
+        usersAPI.delete(userId).then(response => console.log(response));
+
     };
 
     useEffect(
         () => {
             if(id!==null) {
-                read_API(id)
-                .then(response => response.json())
-                .then(data => setUserItem(data))
+
+                usersAPI.read(id).then(data => setUserItem(data));
+
             }
         },
         [id]

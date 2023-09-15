@@ -5,6 +5,8 @@ import UserList from '../Components/UserList/UserList';
 import UserCreate from '../Components/UserCreate/UserCreate';
 import UserRead from '../Components/UserRead/UserRead';
 
+import { getRestfulAPI } from '../api/api';
+
 import './App.css';
 
 
@@ -24,6 +26,8 @@ function App() {
 
   const showReadUserComponent = () => {setReadComponent(true);};
   const closeReadUserComponent = () => {setReadComponent(false);};
+
+  const usersAPI = getRestfulAPI('https://jsonplaceholder.typicode.com', 'users');
 
 
   
