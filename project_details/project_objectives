@@ -6,10 +6,13 @@ Version 2 objectives:
 
 - Cleaner architecture
   x Container-component
-  - Prop drilling issues
-- App-wide state
+  - Prop drilling issues | optimization
+  - App-wide state | Context
 
-- Abstraction vs Direct code
+x Abstraction vs Direct code
+
+x Passing by value | Passing by reference
+x React state updates | Comparison
 
 x Full restful API
 

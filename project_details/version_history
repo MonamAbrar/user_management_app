@@ -1,4 +1,6 @@
 
+0.1.5
+  - Added sample loading/success/error states to userList component
 
 0.1.4 
   - Back to simpler api
@@ -8,7 +10,6 @@
 
 0.1.2
   - Full restful_api
-
 
 0.1.1
   - Component structure improved (based on data and flow requirements)

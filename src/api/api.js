@@ -3,6 +3,11 @@
 export const list_API = () => {
   // return fetch('https://jsonplaceholder.typicode.com/users', {method: 'GET'});
   return fetch('https://jsonplaceholder.typicode.com/users');
+  // return new Promise((resolve, reject) => {
+  //   setTimeout(() => {resolve(fetch('https://jsonplaceholder.typicode.com/users'));}, 3000);
+  //   // setTimeout(() => {reject(fetch('https://jsonplaceholder.typicode.com/users'));}, 3000);
+  // })
+  
 };
   
 export const read_API = (id) => {
