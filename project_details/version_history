@@ -1,4 +1,8 @@
 
+0.1.6
+  - Reasonable styling
+  - User feedback pattern added to userList
+
 0.1.5
   - Added sample loading/success/error states to userList component
 

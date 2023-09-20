@@ -2,12 +2,17 @@
 
 export const list_API = () => {
   // return fetch('https://jsonplaceholder.typicode.com/users', {method: 'GET'});
-  return fetch('https://jsonplaceholder.typicode.com/users');
-  // return new Promise((resolve, reject) => {
-  //   setTimeout(() => {resolve(fetch('https://jsonplaceholder.typicode.com/users'));}, 3000);
-  //   // setTimeout(() => {reject(fetch('https://jsonplaceholder.typicode.com/users'));}, 3000);
-  // })
+  // return fetch('https://jsonplaceholder.typicode.com/users');
   
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {resolve(null);}, 2000)
+  }).then((result) => fetch('https://jsonplaceholder.typicode.com/users'))
+};
+
+export const list_API_error = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {resolve(null);}, 2000)
+  }).then((result) => {throw new Error('API Error');});
 };
   
 export const read_API = (id) => {

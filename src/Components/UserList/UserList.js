@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 
 
-import { list_API } from '../../api/api';
+import { list_API, list_API_error } from '../../api/api';
 
 import './UserList.css';
 
@@ -12,7 +12,7 @@ const UserList = ({ userClickHandler }) => {
 
   const [isLoading, setLoading] = useState(false);
   const [isSuccess, setSuccess] = useState(false);
-  const [isError, setError] = useState(false);
+  const [isError, setError] = useState(null);
     
   useEffect(
     () => {
@@ -21,17 +21,36 @@ const UserList = ({ userClickHandler }) => {
         .then(response => (response.json()))
         .then(data => {
           setLoading(false);
-          setUsers(data);
+          setError(null);
           setSuccess(true);
+          setUsers(data);
         })
         .catch(error => {
           setLoading(false);
           setError(true);
-          console.log(error)
         });
     },
     []
   );
+
+
+  const forceApiCall = () => {
+    setLoading(true);
+    
+    list_API_error()
+    // list_API()
+      .then(response => (response.json()))
+      .then(data => {
+        setLoading(false);
+        setError(null);
+        setSuccess(true);
+        setUsers(data);
+      })
+      .catch(error => {
+        setLoading(false);
+        setError(error.message);
+      });
+  }
 
   const [users, setUsers] = useState([]);
 
@@ -39,16 +58,25 @@ const UserList = ({ userClickHandler }) => {
     return (
       <>
 
-        { isLoading ? <p>Fetching users...</p> : '' }
-        { isSuccess ? <p>Users fetched successfully</p> : '' }
-        { isError ? <p>Error - unable to fetch users</p> : '' }
+        {/* { isLoading ? <p>Fetching users...</p> : '' } */}
+        {/* { isSuccess ? <p>Users fetched successfully</p> : '' } */}
+        {/* { isError ? <p>Error - unable to fetch users</p> : '' } */}
+        
+        <button onClick={forceApiCall}>API Call</button>
 
-        <div className="user-list">
+        { isLoading ?
+          <div className='lds-ring-container'>
+            <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+        : '' }
+
+
+        <div className={`user-list`}>
           <div className="user-list-title-container">
               <h2>List</h2>
           </div>
 
-          <ul className="user-list-items">
+          <ul className={`user-list-items ${isLoading ? 'user-list-items--loading' : ''}`}>
               
               <li className="user-list-item">
                   <div><strong>Name</strong></div>
@@ -56,19 +84,26 @@ const UserList = ({ userClickHandler }) => {
                   <div><strong>City</strong></div>
               </li>
 
-              {users.map((user) => (
-                  <li
-                    onClick={() => {userClickHandler(user.id)}}
-                    key={user.id}
-                    className="user-list-item"
-                  >
-                      <div>{user.name}</div>
-                      <div>{user.email}</div>
-                      <div>{user.address.city}</div>
-                  </li>
-              ))}
+              { isError ?
+                  <div>
+                    <p className='error'>{isError}</p>
+                  </div>
+                : 
+                  users.map((user) => (
+                      <li
+                        onClick={() => {userClickHandler(user.id)}}
+                        key={user.id}
+                        className="user-list-item"
+                      >
+                          <div>{user.name}</div>
+                          <div>{user.email}</div>
+                          <div>{user.address.city}</div>
+                      </li>
+                  ))
+              }
 
           </ul>
+          
         </div>
 
       </>
