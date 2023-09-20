@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 
 
-import { list_API, list_API_error } from '../../api/api';
+import { list_API } from '../../api/api';
 
 import './UserList.css';
 
@@ -33,12 +33,10 @@ const UserList = ({ userClickHandler }) => {
     []
   );
 
-
+  
   const forceApiCall = () => {
-    setLoading(true);
-    
-    list_API_error()
-    // list_API()
+    setLoading(true);  
+    list_API()
       .then(response => (response.json()))
       .then(data => {
         setLoading(false);
@@ -52,17 +50,15 @@ const UserList = ({ userClickHandler }) => {
       });
   }
 
+
+
   const [users, setUsers] = useState([]);
 
 
     return (
       <>
 
-        {/* { isLoading ? <p>Fetching users...</p> : '' } */}
-        {/* { isSuccess ? <p>Users fetched successfully</p> : '' } */}
-        {/* { isError ? <p>Error - unable to fetch users</p> : '' } */}
-        
-        <button onClick={forceApiCall}>API Call</button>
+        <button onClick={forceApiCall}>Refresh List</button>
 
         { isLoading ?
           <div className='lds-ring-container'>

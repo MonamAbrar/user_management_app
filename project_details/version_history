@@ -1,4 +1,8 @@
 
+
+0.1.7
+  - User feedback pattern added to all api calling components (List | CRUD)
+
 0.1.6
   - Reasonable styling
   - User feedback pattern added to userList

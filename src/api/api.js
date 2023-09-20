@@ -2,21 +2,16 @@
 
 export const list_API = () => {
   // return fetch('https://jsonplaceholder.typicode.com/users', {method: 'GET'});
-  // return fetch('https://jsonplaceholder.typicode.com/users');
+  return fetch('https://jsonplaceholder.typicode.com/users');
   
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {resolve(null);}, 2000)
-  }).then((result) => fetch('https://jsonplaceholder.typicode.com/users'))
-};
-
-export const list_API_error = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {resolve(null);}, 2000)
-  }).then((result) => {throw new Error('API Error');});
+  // return new Promise((resolve, reject) => {
+  //   setTimeout(() => {resolve(null);}, 2000)
+  // }).then((result) => fetch('https://jsonplaceholder.typicode.com/users'))
 };
   
 export const read_API = (id) => {
   return fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+
 };
 
 export const create_API = (newEntry) => {
@@ -41,10 +36,10 @@ export const update_API = (id, updatedEntry) => {
   );
 };
 
+
+
 export const delete_API = (id) => {
   return fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {method: 'DELETE'});
 };
-
-
 
 
