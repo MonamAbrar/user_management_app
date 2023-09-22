@@ -5,7 +5,7 @@ import './UserUpdate.css';
 // import '../UserCreate/UserCreate.css';
 
 
-const UserUpdate = ({ closeHandler, saveHandler, userDetails}) => {
+const UserUpdate = ({ closeHandler, saveHandler, userDetails, fetchUsers, closeReadComponent}) => {
 
     const [isLoading, setLoading] = useState(false);
     const [isSuccess, setSuccess] = useState(false);
@@ -32,9 +32,9 @@ const UserUpdate = ({ closeHandler, saveHandler, userDetails}) => {
         update_API(userDetails.id, updatedUser)
         .then(response => response.json())
         .then(jsonData => {
-            console.log(jsonData)
-            setError(false)
-            setLoading(false);
+            console.log(jsonData);
+            fetchUsers();
+            closeReadComponent();
         }).catch(error => {
             setLoading(false);
             setError(error.message);

@@ -1,5 +1,9 @@
 
 
+0.1.8
+  - noticeable prop drilling
+  - basic UX flow complete (re-rendering, re-fetching on changes)
+
 0.1.7
   - User feedback pattern added to all api calling components (List | CRUD)
 

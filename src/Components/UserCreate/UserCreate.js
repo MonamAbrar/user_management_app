@@ -4,7 +4,7 @@ import { create_API } from '../../api/api';
 
 import './UserCreate.css';
 
-const UserCreate = ({ closeHandler}) => {
+const UserCreate = ({ closeHandler, fetchUsers}) => {
 
     const [isLoading, setLoading] = useState(false);
     const [isSuccess, setSuccess] = useState(false);
@@ -34,6 +34,7 @@ const UserCreate = ({ closeHandler}) => {
             console.log(jsonData);
             setLoading(false);
             setError(false);
+            fetchUsers();
             closeHandler();
         }).catch((error) => {
             setLoading(false);

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-import EditUser from '../UserUpdate/UserUpdate';
+import UserUpdate from '../UserUpdate/UserUpdate';
 
 import './UserRead.css';
 
 import { delete_API, read_API } from '../../api/api';
 
-const UserRead = ({ closeHandler, id }) => {
+const UserRead = ({ closeHandler, id, fetchUsers }) => {
 
     const [isLoading, setLoading] = useState(false);
     const [isSuccess, setSuccess] = useState(false);
@@ -57,7 +57,7 @@ const UserRead = ({ closeHandler, id }) => {
     return (
         <>
             <div className='user-details-container'>
-                {editUserComponentShown ? <EditUser userDetails={userItem} closeHandler={closeEditUserComponent} />: ''}
+                {editUserComponentShown ? <UserUpdate userDetails={userItem} fetchUsers={fetchUsers} closeHandler={closeEditUserComponent} closeReadComponent={closeHandler}/>: ''}
 
                 { isLoading ?
                     <div className='lds-ring-container'>
