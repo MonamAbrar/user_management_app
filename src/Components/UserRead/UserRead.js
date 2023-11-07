@@ -6,11 +6,25 @@ import './UserRead.css';
 
 import { delete_API, read_API } from '../../api/api';
 
-const UserRead = ({ closeHandler, id, fetchUsers }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { interfaceActions } from '../../Redux/interface/interfaceActions';
 
-    const [isLoading, setLoading] = useState(false);
-    const [isSuccess, setSuccess] = useState(false);
-    const [isError, setError] = useState(false);
+const UserRead = ({ fetchUsers }) => {
+
+    const dispatch = useDispatch();
+
+    const {isLoading} = useSelector(state => state.api)
+    const id = useSelector(state => state.api.selectedUserId); 
+    const user = useSelector(state => {
+        if (id===null) {return null;}
+        return state.api.users.find(user => id===user.id);
+    });
+
+    console.log(id, user);
+    
+    
+    // console.log(user);
+
 
 
     const[userItem, setUserItem] = useState({});
@@ -19,34 +33,36 @@ const UserRead = ({ closeHandler, id, fetchUsers }) => {
     const showEditUserComponent = () => {setEditUserComponent(true);};
     const closeEditUserComponent = () => {setEditUserComponent(false);};
 
+    const closeHandler = () => { dispatch(interfaceActions.hideReadComponent()); }
+
     const handleDelete = (userId) => {
-        setLoading(true)
+        // setLoading(true)
         delete_API(userId)
         .then(response => response.json())
         .then(jsonData => {
             console.log(jsonData)
-            setLoading(false);
-            setError(false);
+            // setLoading(false);
+            // setError(false);
             closeHandler();
         }).catch(error => {
-            setLoading(false);
-            setError(error.message);
+            // setLoading(false);
+            // setError(error.message);
         })
     };
 
     useEffect(
         () => {
             if(id!==null) {
-                setLoading(true);
+                // setLoading(true);
                 read_API(id)
                 .then(response => response.json())
                 .then(data => {
-                    setLoading(false);
-                    setError(false);
+                    // setLoading(false);
+                    // setError(false);
                     setUserItem(data)
                 }).catch(error => {
-                    setLoading(false);
-                    setError(error.message);
+                    // setLoading(false);
+                    // setError(error.message);
                 })
             }
         },
@@ -75,11 +91,11 @@ const UserRead = ({ closeHandler, id, fetchUsers }) => {
                         <p className="user-address-city">City: {userItem?.address?.city}</p>
                     </div>
 
-                    { isError ?
+                    {/* { isError ?
                         <div>
                         <p className='error'>Error: {isError}</p>
                         </div>
-                    : '' }
+                    : '' } */}
 
                     <div className="user-details-controls">
                         <button onClick={() => {handleDelete(id)}} className="create-button">Delete</button>

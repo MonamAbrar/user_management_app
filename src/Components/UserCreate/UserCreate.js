@@ -4,11 +4,17 @@ import { create_API } from '../../api/api';
 
 import './UserCreate.css';
 
-const UserCreate = ({ closeHandler, fetchUsers}) => {
+import { useDispatch, useSelector } from 'react-redux';
 
-    const [isLoading, setLoading] = useState(false);
-    const [isSuccess, setSuccess] = useState(false);
-    const [isError, setError] = useState(false);
+import { apiActions } from '../../Redux/api/apiActions';
+
+import { interfaceActions } from '../../Redux/interface/interfaceActions';
+
+const UserCreate = ({fetchUsers}) => {
+
+    const dispatch = useDispatch();
+
+    const {isLoading, isSuccess, isError} = useSelector(state => state.api);
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -27,20 +33,22 @@ const UserCreate = ({ closeHandler, fetchUsers}) => {
             }
         }
 
-        setLoading(true);
+        dispatch(apiActions.createUserStart());
+
+        // setLoading(true);
         create_API(newUser)
         .then(response => response.json())
-        .then(jsonData => {
-            console.log(jsonData);
-            setLoading(false);
-            setError(false);
-            fetchUsers();
+        .then(data => {
+            console.log(data);
+            dispatch(apiActions.createUserSuccess(data));;
             closeHandler();
         }).catch((error) => {
-            setLoading(false);
-            setError(error.message);
+            // setLoading(false);
+            // setError(error.message);
         })
     }
+
+    const closeHandler = () => { dispatch(interfaceActions.toggleCreateComponent()); }
 
     return (
         <div className={`create-user ${isLoading ? 'create-user--loading' : ''}`}>

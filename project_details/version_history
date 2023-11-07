@@ -1,5 +1,10 @@
 
 
+0.1.9
+  - Migrating to redux (WIP)
+  - List, Create & Read seemingly done (re-confirm it)
+
+
 0.1.8
   - noticeable prop drilling
   - basic UX flow complete (re-rendering, re-fetching on changes)
