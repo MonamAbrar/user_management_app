@@ -2,8 +2,6 @@ import React from 'react';
 
 import { useEffect, useState } from 'react';
 
-
-import { list_API } from '../../api/api';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { apiActions } from '../../Redux/api/apiActions';
@@ -19,20 +17,10 @@ const UserList = ({ isSuccess, isError }) => {
   }
 
   const {readComponentShown} = useSelector(state => state.interface);
-
-  const fetchUsers = () => {
-    dispatch(apiActions.fetchUserListStart());
-    list_API()
-      .then(response => (response.json()))
-      .then(data => {
-        dispatch(apiActions.fetchUserListSuccess(data));
-      })
-      .catch(error => {
-      });
-  }
+  
   
   useEffect(
-    () => {fetchUsers();},
+    () => {dispatch(apiActions.fetchUsersThunk)},
     []
   );
   

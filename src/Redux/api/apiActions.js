@@ -1,3 +1,4 @@
+import { list_API } from "../../api/api";
 
 
 const fetchUserListStart = () => {
@@ -50,6 +51,21 @@ const updateUserSuccess = (user) => {
   };
 }
 
+
+const fetchUsersThunk = (dispatch, getState) => {
+  console.log(getState());
+  dispatch(apiActions.fetchUserListStart());
+  list_API()
+    .then(response => (response.json()))
+    .then(data => {
+      dispatch(apiActions.fetchUserListSuccess(data));
+      console.log(getState());
+    })
+    .catch(error => {
+    });
+}
+
+
 export const apiActions = {
   fetchUserListStart,
   fetchUserListSuccess,
@@ -59,4 +75,5 @@ export const apiActions = {
   readUserSuccess,
   updateUserStart,
   updateUserSuccess,
+  fetchUsersThunk,
 }

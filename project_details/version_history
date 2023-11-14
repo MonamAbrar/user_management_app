@@ -1,4 +1,7 @@
 
+0.1.11
+  - Thunk function implmented for UserList component.
+
 0.1.10
   - App (mostly) migrated to Redux (no thunks yet)
 
