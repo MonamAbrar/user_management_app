@@ -20,14 +20,14 @@ const UserRead = ({ fetchUsers }) => {
         return state.api.users.find(user => id===user.id);
     });
 
-    console.log(id, user);
+    // console.log(id, user);
     
     
     // console.log(user);
 
 
 
-    const[userItem, setUserItem] = useState({});
+    const [userItem, setUserItem] = useState({});
     const [editUserComponentShown, setEditUserComponent] = useState(false);
     
     const showEditUserComponent = () => {setEditUserComponent(true);};
@@ -40,7 +40,7 @@ const UserRead = ({ fetchUsers }) => {
         delete_API(userId)
         .then(response => response.json())
         .then(jsonData => {
-            console.log(jsonData)
+            // console.log(jsonData)
             // setLoading(false);
             // setError(false);
             closeHandler();

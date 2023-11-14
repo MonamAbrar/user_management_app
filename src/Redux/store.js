@@ -17,4 +17,4 @@ const store = createStore(rootReducer, composeWithDevTools());
 
 export default store;
 
-console.log(store);
+// console.log(store);

@@ -1,4 +1,6 @@
 
+0.1.10
+  - App (mostly) migrated to Redux (no thunks yet)
 
 0.1.9
   - Migrating to redux (WIP)

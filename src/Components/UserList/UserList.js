@@ -21,17 +21,13 @@ const UserList = ({ isSuccess, isError }) => {
   const {readComponentShown} = useSelector(state => state.interface);
 
   const fetchUsers = () => {
-    // console.log('fetching...');
     dispatch(apiActions.fetchUserListStart());
-    // setLoading(true);
     list_API()
       .then(response => (response.json()))
       .then(data => {
         dispatch(apiActions.fetchUserListSuccess(data));
       })
       .catch(error => {
-        // setLoading(false);
-        // setError(error.message);
       });
   }
   

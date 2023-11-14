@@ -79,7 +79,7 @@ const apiReducer = (state = initialState, action) => {
         isLoading: true,
         isSuccess: false,
         isError: false,
-      }
+    }
 
     case 'readUserSuccess': {
       return {
@@ -91,6 +91,39 @@ const apiReducer = (state = initialState, action) => {
     }
 
     case 'readUserError': {
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+        isSuccess: false,
+      }
+    }
+    
+    case 'updateUserStart':
+      return {
+        ...state,
+        isLoading: true,
+        isSuccess: false,
+        isError: false,
+    }
+
+    case 'updateUserSuccess': {
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        isSuccess: true,
+        users: state.users.map(user => {
+          if(user.id === state.selectedUserId) {
+            return action.payload.user;
+          }
+          return user;
+        }),
+        
+      }
+    }
+
+    case 'updateUserError': {
       return {
         ...state,
         isLoading: false,

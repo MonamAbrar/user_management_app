@@ -18,7 +18,7 @@ const interfaceReducer = (state = initialState, action) => {
       return { ...state, createComponentShown: !state.createComponentShown }
     
     case 'hideCreateComponent':
-      return { ...state, readComponentShown: false }
+      return { ...state, createComponentShown: false }
 
     case 'showReadComponent':
       return {...state, readComponentShown: true}

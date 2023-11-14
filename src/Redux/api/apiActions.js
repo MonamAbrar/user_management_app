@@ -39,6 +39,17 @@ const readUserSuccess = (user) => {
   };
 }
 
+const updateUserStart = () => {
+  return {type: 'updateUserStart'};
+}
+
+const updateUserSuccess = (user) => {
+  return {
+    type: 'updateUserSuccess',
+    payload: { user }
+  };
+}
+
 export const apiActions = {
   fetchUserListStart,
   fetchUserListSuccess,
@@ -46,4 +57,6 @@ export const apiActions = {
   createUserSuccess,
   readUserStart,
   readUserSuccess,
+  updateUserStart,
+  updateUserSuccess,
 }

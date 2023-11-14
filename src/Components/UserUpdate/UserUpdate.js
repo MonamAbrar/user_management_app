@@ -2,14 +2,16 @@ import React, { useState } from "react";
 
 import { update_API } from "../../api/api";
 import './UserUpdate.css';
-// import '../UserCreate/UserCreate.css';
+import { useDispatch, useSelector } from "react-redux";
+import { apiActions } from "../../Redux/api/apiActions";
 
 
 const UserUpdate = ({ closeHandler, saveHandler, userDetails, fetchUsers, closeReadComponent}) => {
 
-    const [isLoading, setLoading] = useState(false);
-    const [isSuccess, setSuccess] = useState(false);
-    const [isError, setError] = useState(null);
+    const {isLoading, isError, isSuccess, selectedUserId} = useSelector(state => state.api);
+    const user = useSelector(state => state.api.users.find(user => selectedUserId === user.id) )
+    
+    const dispatch = useDispatch();
 
     const [name, setName] = useState(userDetails.name);  // useState('');
     const [email, setEmail] = useState(userDetails.email);  // useState('');
@@ -28,16 +30,18 @@ const UserUpdate = ({ closeHandler, saveHandler, userDetails, fetchUsers, closeR
                 street,
             },
         };
-        setLoading(true);
+        
+        dispatch(apiActions.updateUserStart());
         update_API(userDetails.id, updatedUser)
         .then(response => response.json())
         .then(jsonData => {
             console.log(jsonData);
-            fetchUsers();
-            closeReadComponent();
+            // fetchUsers();
+            dispatch(apiActions.updateUserSuccess(jsonData))
         }).catch(error => {
-            setLoading(false);
-            setError(error.message);
+            console.log(error);
+            // setLoading(false);
+            // setError(error.message);
         })
     }
 
